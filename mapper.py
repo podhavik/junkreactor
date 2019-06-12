@@ -12,8 +12,9 @@ mapcolors = \
     {'x': (100, 60, 30),
      'd': (30, 120, 10),
      'u': (30, 190, 10),
-     'r': (150, 0, 0),
+     'r': (100, 0, 0),
      'f': (0, 0, 250),
+     'o': (200, 0, 50),
      'e': (250, 0, 0)}
 
 
@@ -33,6 +34,7 @@ class Mapper(object):
         #self.originalData = [''.join(i) for m in maps for i in m ]
         self.originalData = copy.deepcopy(maps)
         self.maps = [GameMap(m) for m in maps]
+        self.act_index = 0
 
 
     def select(self, mode=START):
@@ -83,7 +85,9 @@ class Mapper(object):
                 if place not in NOT_DRAWABLES:
                     #view.rectangle(grid.get_rect(x, y), mapcolors[place], place in PLACES)
                     view.rectangle(grid.get_rect(x, y), mapcolors[place], 0)
-
+                if place == 'r' :
+                    col = (-int(round(self.act_map.intensityData[x][y], 0)) + 220 , 0, 0)
+                    view.rectangle(grid.get_rect(x, y), col, 0)
 
     @property
     def act_map(self):

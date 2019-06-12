@@ -22,6 +22,7 @@ class Player(object):
         self.dx = 0
         self.dy = 0
         self.drag = False
+        self.loaded = False
 
     # @property
     # def drag(self):
@@ -116,3 +117,5 @@ class Player(object):
     def draw(self, view):
 
         view.rectangle((self.x, self.y, self.width, self.height), self.color)
+        if self.loaded :
+            view.rectangle((self.x+self.width/4, self.y+self.height/4, self.width/2, self.height/2), (0, 0, 130))

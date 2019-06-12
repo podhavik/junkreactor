@@ -12,6 +12,7 @@ class MazeGame(object):
         self.config = config
         self.dtimer = DeltaTimer(config.dt)
         self.mapper = Mapper(maps, config.width, config.height)
+        self.fuelCount = self.mapper.act_map.countF()
         self.player_accel= config.player_accel
         self.friction = config.friction
 
@@ -34,15 +35,9 @@ class MazeGame(object):
             self.player.accelerate(ev, accel)
 
 
-    def check_places(self):
+    def check_nextStage(self):
 
-        # place = self.mapper.act_map[self.mapper.get_cell(*self.player.center)]
-        # if place in PLACES:
-        #   if place == 'e':
-        #     return 'ending'
-        #   else:
-        #     self.reset({'u': UP, 'd': DOWN, 'r': RANDOM}.get(place))
-        if self.mapper.act_map.noF() :
+        if self.fuelCount <= 0 :
             return 'nextStage'
 
         return 'playing'
@@ -114,7 +109,7 @@ class MazeGame(object):
         self.player.draw(view)
         self.draw_text(view)
 
-        return self.check_places()
+        return self.check_nextStage()
 
     def check_drag(self):
         if not self.player.drag :
@@ -123,8 +118,14 @@ class MazeGame(object):
 
         cell = self.mapper.get_cell(*self.player.center)
         place = self.mapper.act_map[cell]
-        if place == 'f':
+        if place == 'f' and not self.player.loaded:
             self.mapper.act_map[cell] = '.'
+            self.player.loaded = True
+
+        if place == 'r' and self.player.loaded:
+            self.mapper.act_map[cell] = 'o'
+            self.fuelCount -= 1
+            self.player.loaded = False
 
 
     def transform_player(self, dt, friction):

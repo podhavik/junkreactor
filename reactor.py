@@ -29,8 +29,8 @@ from controller import *
 config = \
     {'fullscreen': False,
      'visibmouse': False,
-     'width': 800,
-     'height': 600,
+     'width': 1280,
+     'height':1024,
      'back_color': (0, 0, 0),
      #'back_color': (230, 180, 40),
      'font_ratio': 8,
@@ -39,7 +39,7 @@ config = \
      'dt': 0.01,
      'friction': 0.987,
      'player_sizefac': 1.2,
-     'player_color': (255, 0, 255),
+     'player_color': (0, 120, 0),
      'player_accel': 300,
      'width_sensors': 8,
      'height_sensors': 8,
@@ -49,9 +49,11 @@ config = \
 #### maps
 # x = wall
 # s = start
-# d = level down
-# u = level up
-# r = random level
+# f = fuel
+# r = rode
+# o = rode On
+
+
 
 
 
@@ -87,8 +89,87 @@ reactor_test = \
      "x........................x",
      "xxxxxxxxxxxxxxxxxxxxxxxxxx"]
 
-reactor_map = \
+reactor_test2 = \
     ["xxxxxxxxxxxxxxxxxxxxxxxxxx",
+     "xs.......................x",
+     "x....f...f...f...f.......x",
+     "x........................x",
+     "x........................x",
+     "x........................x",
+     "x........................x",
+     "x............r...........x",
+     "x...........rrr..........x",
+     "x..........rrrrr.........x",
+     "x...........rrr..........x",
+     "x............r...........x",
+     "x........................x",
+     "x........................x",
+     "x........................x",
+     "x........................x",
+     "x........................x",
+     "x........................x",
+     "xxxxxxxxxxxxxxxxxxxxxxxxxx"]
+
+reactor_test = \
+    ["xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     "xs.................................x",
+     "x....f...f............f....f.......x",
+     "x..................................x",
+     "x..................................x",
+     "x..................................x",
+     "x..................................x",
+     "x.............rrrrrrrrr............x",
+     "x...........rrrrrrrrrrrrr..........x",
+     "x...........rrrrrooorrrrr..........x",
+     "x..........rrrrrrooorrrrrr.........x",
+     "x..........rrrrrrrrrrrrrrr.........x",
+     "x..........rrrrrooroorrrrr.........x",
+     "x.........rrrrrrooroorrrrrr........x",
+     "x.........rrrorrrrrrrrrrrrr........x",
+     "x.........rrrorrooroorroorr........x",
+     "x.........rrrrrrooroorrrrrr........x",
+     "x..........rrrrrrrrrrrrrrr.........x",
+     "x..........rrrrrrooorrrrrr.........x",
+     "x..........rrrrrrooorrrrrr.........x",
+     "x...........rrrrrrrrrrrrr..........x",
+     "x...........rrrrrrrrrrrrr..........x",
+     "x.............rrrrrrrrr............x",
+     "x..................................x",
+     "x..................................x",
+     "x..................................x",
+     "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"]
+
+reactor_test = \
+    ["xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     "xs.................................x",
+     "x....f...f............f....f.......x",
+     "x..................................x",
+     "x..................................x",
+     "x..................................x",
+     "x..................................x",
+     "x.............rrrrrrrrr............x",
+     "x...........rrrrrrrrrrrrr..........x",
+     "x...........rrrrrrrrrrrrr..........x",
+     "x..........rrrrrrrrrrrrrrr.........x",
+     "x..........rrrrrrrrrrrrrrr.........x",
+     "x..........rrrrrrrrrrrrrrr.........x",
+     "x.........rrrrrrrrrrrrrrrrr........x",
+     "x.........rrrrrrrrrrrrrrrrr........x",
+     "x.........rrrrrrrrrrrrrrrrr........x",
+     "x.........rrrrrrrrrrrrrrrrr........x",
+     "x..........rrrrrrrrrrrrrrr.........x",
+     "x..........rrrrrrrrrrrrrrr.........x",
+     "x..........rrrrrrrrrrrrrrr.........x",
+     "x...........rrrrrrrrrrrrr..........x",
+     "x...........rrrrrrrrrrrrr..........x",
+     "x.............rrrrrrrrr............x",
+     "x..................................x",
+     "x..................................x",
+     "x..................................x",
+     "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"]
+
+reactor_map = \
+    ["xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
      "xs.......................x",
      "x........................x",
      "x........................x",
