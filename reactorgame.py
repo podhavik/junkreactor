@@ -12,8 +12,9 @@ class ReactorGame(object):
         self.reactorModel = ReactorModel()
 
 
-    def reset(self, mode):
-
+    def reset(self, mode, fuel):
+        self.reactorModel = ReactorModel()
+        self.reactorModel.fuel = fuel
         self.text = ""
 
 

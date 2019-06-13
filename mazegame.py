@@ -16,17 +16,24 @@ class MazeGame(object):
         self.player_accel= config.player_accel
         self.friction = config.friction
 
+        self.gatheredFuel = 0
+        self.timeRatio = 1
+
 
     def reset(self, mode):
 
         self.text = ""
         self.mapper.select(mode)
+        self.fuelCount = self.mapper.act_map.countF()
         x, y = self.mapper.get_point(*self.mapper.start)
         w, h =  self.mapper.player_sizehint
         size =  self.config.player_sizefac
         width = int(w * size)
         height = int(h * size)
         self.player = Player(x+1, y+1, width, height, self.config.player_color)
+
+        self.gatheredFuel = 0
+        self.timeRatio = 1
 
 
     def accelerate_player(self, events, accel):
@@ -105,6 +112,8 @@ class MazeGame(object):
         self.dtimer.integrate(self.transform_player, self.friction)
         self.check_drag()
 
+        self.timeRatio -= 0.001
+
         self.mapper.draw_map(view)
         self.player.draw(view)
         self.draw_text(view)
@@ -124,6 +133,7 @@ class MazeGame(object):
 
         if place == 'r' and self.player.loaded:
             self.mapper.act_map[cell] = 'o'
+            self.gatheredFuel += self.mapper.act_map.intensityData[cell[0]][cell[1]] * self.timeRatio
             self.fuelCount -= 1
             self.player.loaded = False
 

@@ -18,7 +18,7 @@ class ReactorModel(object):
         self.pumpControl = 0.0
         self.reactorTemperature = 0
         self.turbineTemperature = 0
-        self.fuel = 100
+        self.fuel = 0
         self.generatorOutput = 0
 
         self.reactorCoolFactor = 0.0009
@@ -42,7 +42,7 @@ class ReactorModel(object):
 
 
     def simulate(self, dt):
-        self.fuel -= 0.001
+        self.fuel -= 0.1
 
         self.lastReactorRodesDelta = (1-self.rodsControl)*self.rodFactor + 0.993*self.lastReactorRodesDelta
         reactorTurbineTempDiff = self.reactorTemperature-self.turbineTemperature

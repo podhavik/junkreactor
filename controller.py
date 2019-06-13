@@ -9,8 +9,9 @@ class Controller(object):
     def __init__(self, view, maps, config):
 
         self.view = view(self, config)
-        self.game = MazeGame(maps, config)
+        self.mazeGame = MazeGame(maps, config)
         self.reactorGame = ReactorGame(config)
+        self.game = self.mazeGame
         self.game.reset(START)
         self.state = 'playing'
 
@@ -28,8 +29,9 @@ class Controller(object):
             return True
 
         if self.state == 'nextStage':
+            fuel = self.game.gatheredFuel
             self.game = self.reactorGame
-            self.reactorGame.reset(START)
+            self.reactorGame.reset(START, fuel)
             self.state = 'playing'
             return True
 
@@ -38,6 +40,7 @@ class Controller(object):
             self.game.wait(self.view)
             if event == 'other_key':
                 self.state = 'playing'
+                self.game = self.mazeGame
                 self.game.reset(START)
 
         return True
