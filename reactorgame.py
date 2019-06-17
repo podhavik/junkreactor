@@ -33,7 +33,7 @@ class ReactorGame(object):
         self.dtimer.integrate(self.reactorModel.simulate)
 
         if self.reactorModel.isEnd() :
-            return 'ending'
+            return 'setHighScore'
 
         self.reactorModel.draw(view)
         self.text = 'Fule: ' + str(round(self.reactorModel.fuel,1))
