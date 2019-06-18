@@ -1,4 +1,5 @@
 from gameconstants import *
+from hwinput import *
 
 import math
 
@@ -39,6 +40,14 @@ class ReactorModel(object):
         self.lastReactorRodesDelta = 0
         self.reactorRodesMomentumFactor = 0.996
 
+	#self.hwInput = HwInput()
+
+    def limitControls(self):
+        if self.rodsControl < 0 : self.rodsControl = 0
+        if self.pumpControl < 0 : self.pumpControl = 0
+        if self.rodsControl > 1 : self.rodsControl = 1
+        #if self.pumpControl > 1 : self.pumpControl = 1
+
     def control(self, events):
         for ev in events:
             if ev == 'up': self.rodsControl += 0.01
@@ -46,11 +55,15 @@ class ReactorModel(object):
             if ev == 'left': self.pumpControl -= 0.01
             if ev == 'right': self.pumpControl += 0.01
 
-        if self.rodsControl < 0 : self.rodsControl = 0
-        if self.pumpControl < 0 : self.pumpControl = 0
-        if self.rodsControl > 1 : self.rodsControl = 1
-        if self.pumpControl > 1 : self.pumpControl = 1
+	#self.setControl(self.hwInput.readPots())
+	
+        self.limitControls()
 
+    def setControl(self, controls):
+        self.rodsControl = controls[0]
+        self.pumpControl = controls[1]
+
+        self.limitControls()
 
     def simulate(self, dt):
         self.fuel -= 0.1

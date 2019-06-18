@@ -1,5 +1,6 @@
 from deltatimer import *
 from reactormodel import *
+from hwinput import *
 
 
 class ReactorGame(object):
@@ -7,6 +8,7 @@ class ReactorGame(object):
 
     def __init__(self, config):
 
+        self.hwInput = HwInput()
         self.config = config
         self.dtimer = DeltaTimer(config.dt)
         self.reactorModel = ReactorModel()
@@ -29,6 +31,8 @@ class ReactorGame(object):
             #return 'ending'
 
         self.reactorModel.control(move_events)
+        self.reactorModel.setControl(self.hwInput.readPots())
+
         self.dtimer += dur
         self.dtimer.integrate(self.reactorModel.simulate)
 

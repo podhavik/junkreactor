@@ -4,6 +4,7 @@
 
 import pygame
 
+
 class PygView(object):
     """Pygame interface"""
 

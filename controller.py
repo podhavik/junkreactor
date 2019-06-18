@@ -19,8 +19,8 @@ class Controller(object):
 
         #for debug
         self.game = self.reactorGame
-        #self.reactorGame.reset(START, 1500)
-        self.reactorGame.reset(START, 10)
+        self.reactorGame.reset(START, 1500)
+        #self.reactorGame.reset(START, 10)
 
         self.state = 'playing'
 
